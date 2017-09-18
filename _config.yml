@@ -2,12 +2,11 @@
 title:  A@A Template Documentation
 description: A demo of the template documents
 email: 			adobeatadobe@adobe.com
-baseurl: 	  "/pages/aaa/sensei-automated-workflow" # the subpath of your site, e.g. /blog
-theme: jekyll-theme-cayman
-show_downloads: "false"
+baseurl: 	  "/pages/aaa/gh-pages-boilerplate" # the subpath of your site, e.g. /blog
+theme: jekyll-theme-cayman # theme from jekyll github account
 google_analytics: [Your Google Analytics tracking ID]
-repository: aaa/sensei-automated-workflow
-markdown: redcarpet
+repository: aaa/gh-pages-boilerplate # location of your repository
+markdown: redcarpet # markdown engine
 
 # About/contact
 author:

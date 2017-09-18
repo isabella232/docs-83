@@ -1,2 +1,2 @@
-Sensei Automated Workflow Documentation
+GH-Pages Boilerplate Documentation
 
