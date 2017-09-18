@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>{} | A@A Template Documentation</title>
+<meta property="og:title" content="{}" />
+<meta name="author" content="Adobe@Adobe" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A demo of the template documents" />
+<meta property="og:description" content="A demo of the template documents" />
+<link rel="canonical" href="http://localhost:4000/pages/aaa/sensei-automated-workflow/components.html" />
+<meta property="og:url" content="http://localhost:4000/pages/aaa/sensei-automated-workflow/components.html" />
+<meta property="og:site_name" content="A@A Template Documentation" />
+<script type="application/ld+json">
+{"name":null,"description":"A demo of the template documents","url":"http://localhost:4000/pages/aaa/sensei-automated-workflow/components.html","headline":"{}","dateModified":null,"datePublished":null,"sameAs":null,"@type":"WebPage","author":{"@type":"Person","name":"Adobe@Adobe"},"image":null,"publisher":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="description" content="A demo of the template documents"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/pages/aaa/sensei-automated-workflow/assets/css/style.css?v=">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">A@A Template Documentation</h1>
+      <h2 class="project-tagline">A demo of the template documents</h2>
+      
+      
+        <a href="" class="btn">Download .zip</a>
+        <a href="" class="btn">Download .tar.gz</a>
+      
+    </section>
+
+    <section class="main-content">
+      <h1 id="components">Components</h1>
+
+<h2 id="carousel"><a name="carousel" class="anchor">Carousel</a></h2>
+<p>The carousel element displays images in a row that the user can navigate by swiping left and right on the remote.</p>
+
+<p><img src="images/carousel.png" alt="Alt text" /></p>
+
+<h3 id="configuration">Configuration</h3>
+
+<p>Images can be added by opening the configuration dialog and clicking the add field button.</p>
+
+<ul>
+  <li><b>Image Path:</b> Path to image in DAM.</li>
+  <li><b>Link To:</b> Path selecting the image to be linked.</li>
+  <li><b>Banner Title:</b> Heading overlaid at the bottom of the banner (optional).</li>
+</ul>
+
+<p><img src="images/carousel_settings.png" alt="Alt text" /></p>
+
+<h2 id="catalog-shelf"><a name="catalogShelf" class="anchor">Catalog Shelf</a></h2>
+<p>The catalog shelf component displays catalog or section elements horizontally. If the contained elements cannot fit on the screen, users can navigate left and right to show more elements.</p>
+
+<p><img src="images/catalogShelf.png" alt="Alt text" /></p>
+
+<h3 id="configuration-1">Configuration</h3>
+
+<p>The catalog shelf can display any set of catalog or section pages. To configure the shelf, open up the components configuration dialog and under “Parent Page” select a parent with either catalogs or sections as its children. The component will loop over all children of the parent.</p>
+
+<p>By default, this component will look for a node at the path “section/banner” under each child page. This banner node should have a property called fileReference that contains the path to the image used for this child catalog or section.</p>
+
+<p><img src="images/catalog_shelf_settings.png" alt="Alt text" /></p>
+
+<h2 id="product-shelf"><a name="productShelf" class="anchor">Product Shelf</a></h2>
+<p>The product shelf component displays product elements horizontally. If the contained products cannot fit on the screen, users can navigate left and right to show more elements.</p>
+
+<p><img src="images/productShelf.png" alt="Alt text" /></p>
+
+<h3 id="configuration-2">Configuration</h3>
+
+<p>Products can be added to the product shelf by simply dragging them onto the component from the asset finder.</p>
+
+<h2 id="product-grid"><a name="productGrid" class="anchor">Product Grid</a></h2>
+<p>The product grid will layout elements in a grid pattern. Products inside of the grid are displayed in a row bound by the size of the screen. Items are automatically moved to another row once a row is filled.</p>
+
+<p><img src="images/productGrid.png" alt="Alt text" /></p>
+
+<h3 id="configuration-3">Configuration</h3>
+
+<p>Products can be added to the product grid by simply dragging them onto the component from the asset finder.</p>
+
+<h2 id="mbox-shelf"><a name="target" class="anchor">mBox Shelf</a></h2>
+<p>The mBox shelf is used to display A/B tests from Adobe Target. More information on this component can be found on the <a href="target.html">Adobe Target Integration</a> page.</p>
+
+<p><img src="images/target.png" alt="Alt text" /></p>
+
+<h3 id="configuration-4">Configuration</h3>
+
+<p>A/B tests can be set up by opening the configuration dialog and entering the following fields.</p>
+
+<ul>
+  <li><b>mBox Id:</b> Id of mBox</li>
+  <li><b>Target Page:</b> Target page to be presented if the user selects the A/B test (Optional)</li>
+</ul>
+
+<p><img src="images/target_settings.png" alt="Alt text" /></p>
+
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+
+    
+      <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'Your Google Analytics tracking ID', 'auto');
+        ga('send', 'pageview');
+      </script>
+    
+  </body>
+</html>

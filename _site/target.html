@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>{} | A@A Template Documentation</title>
+<meta property="og:title" content="{}" />
+<meta name="author" content="Adobe@Adobe" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A demo of the template documents" />
+<meta property="og:description" content="A demo of the template documents" />
+<link rel="canonical" href="http://localhost:4000/pages/aaa/sensei-automated-workflow/target.html" />
+<meta property="og:url" content="http://localhost:4000/pages/aaa/sensei-automated-workflow/target.html" />
+<meta property="og:site_name" content="A@A Template Documentation" />
+<script type="application/ld+json">
+{"name":null,"description":"A demo of the template documents","url":"http://localhost:4000/pages/aaa/sensei-automated-workflow/target.html","headline":"{}","dateModified":null,"datePublished":null,"sameAs":null,"@type":"WebPage","author":{"@type":"Person","name":"Adobe@Adobe"},"image":null,"publisher":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="description" content="A demo of the template documents"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/pages/aaa/sensei-automated-workflow/assets/css/style.css?v=">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">A@A Template Documentation</h1>
+      <h2 class="project-tagline">A demo of the template documents</h2>
+      
+      
+        <a href="" class="btn">Download .zip</a>
+        <a href="" class="btn">Download .tar.gz</a>
+      
+    </section>
+
+    <section class="main-content">
+      <h1 id="adobe-target"><a name="target" class="anchor">Adobe Target</a></h1>
+<p>The Adobe Analytics Mobile SDK also supports A/B testing in TVML with the integration of Adobe Target. The Mobile SDK registers a custom tag named ADBTarget which is configured by setting up the mBoxID of the activity for the A/B test. These A/B tests are configured in the <a href="http://mobilemarketing.adobe.com">Analytics Mobile Portal</a> and allow you to set up multiple experiences for an activity. 
+Below is an example usage that embeds an A/B test called “bikingAB”. If we find an A/B test with the mBoxID “bikingAB” then the content between &lt;ADBTarget&gt; and &lt;/ADBTarget&gt; will be replaced with one of the experiences defined in the A/B test. If nothing is found, then the default content inside the tag will be shown - in this case the title tag.</p>
+
+<pre><code>&lt;ADBTarget mbox="bikingAB"&gt; 
+	&lt;title&gt;Target Load fail or Timeout&lt;/title&gt;
+&lt;/ADBTarget&gt;
+</code></pre>
+
+<p>To make Target integration easier with TVML and AEM we created a component called mBoxShelf which can be added to any parsys and configured with the mBoxId in author mode.</p>
+
+<p><img src="images/targetConfig.png" alt="Target Config" /></p>
+
+<ul>
+  <li><b>mBox Id:</b> Id of mBox</li>
+  <li><b>Target Page:</b> Target page that should be presented if the user selects the A/B test (Optional)</li>
+</ul>
+
+<h2 id="target-setup"><a name="targetSetup" class="anchor">Target Setup</a></h2>
+
+<p>Since we are using the Adobe Mobile SDK for target integration A/B test must be created in the <a href="https://mobilemarketing.adobe.com/">Mobile Marketing Portal</a></p>
+
+<p><img src="images/mobileMarketingPortal.png" alt="Mobile Marketing Portal" /></p>
+
+<p>For the bikingAB, we set up two experiences that will be distributed equally across all users (50%). We also specified the successLocation. 
+We must embed another mBox component on the page we want to track as a success and use this success mBoxID to configure it.</p>
+
+<p><img src="images/targetSetup.png" alt="Target Setup" /></p>
+
+<p>The experiences themselves as just simply image tags, when the target component loads it will replace the content in the tag with these image tags.</p>
+
+<p><img src="images/targetAd.png" alt="Target Ad" /></p>
+
+<p>**Note: For demo purposes we are linking to an image in DropBox. Alternatively, you should be able to set a relative path to an image in the DAM.</p>
+
+<h1 id="measuring-success"><a name="targetSuccess" class="anchor">Measuring Success</a></h1>
+<p>If the experience contains a success action that directs the user to another page then another mBoxShelf component will need to be added to the target page. The mBoxShelf component will then need to be configured with the mBoxID of the success activity.</p>
+
+<p>**Note, in order for this to work, you will need to create an Activity in the Mobile Marketing portal for the success mBox.</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+
+    
+      <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'Your Google Analytics tracking ID', 'auto');
+        ga('send', 'pageview');
+      </script>
+    
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>{} | A@A Template Documentation</title>
+<meta property="og:title" content="{}" />
+<meta name="author" content="Adobe@Adobe" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A demo of the template documents" />
+<meta property="og:description" content="A demo of the template documents" />
+<link rel="canonical" href="http://localhost:4000/pages/aaa/sensei-automated-workflow/primetime.html" />
+<meta property="og:url" content="http://localhost:4000/pages/aaa/sensei-automated-workflow/primetime.html" />
+<meta property="og:site_name" content="A@A Template Documentation" />
+<script type="application/ld+json">
+{"name":null,"description":"A demo of the template documents","url":"http://localhost:4000/pages/aaa/sensei-automated-workflow/primetime.html","headline":"{}","dateModified":null,"datePublished":null,"sameAs":null,"@type":"WebPage","author":{"@type":"Person","name":"Adobe@Adobe"},"image":null,"publisher":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="description" content="A demo of the template documents"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/pages/aaa/sensei-automated-workflow/assets/css/style.css?v=">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">A@A Template Documentation</h1>
+      <h2 class="project-tagline">A demo of the template documents</h2>
+      
+      
+        <a href="" class="btn">Download .zip</a>
+        <a href="" class="btn">Download .tar.gz</a>
+      
+    </section>
+
+    <section class="main-content">
+      <h1 id="adobe-primetime"><a name="primetime" class="anchor">Adobe PrimeTime</a></h1>
+
+<p>We.Retail ATV can use the Adobe Primetime player for playing HLS streams. The Primetime player does not support TVML but instead you can push a native view onto the screen which has the primetime player embedded in it.</p>
+
+<p>For We.Retail any lockup which has the ptvideo attribute specified as a property on the tag will use the primetime player to play the video. The ptvideo tag should contain a link to an HLS stream. Below you will see an example of the tag that is used to play the biking promo video in We.Retail ATV.</p>
+
+<pre><code>&lt;buttonlockup ptvideo="http://adobetv-vh.akamaihd.net/i/adobetv2/_images/avp/vr/4c1fbc20-2c90-47be-9ea3-741347e7c40a/7e566a40-3e57-4823-b513-9bb35c3c70da/be5c4c3a-3cea-47d9-9c03-bcde4cb94077_20160407032410.1280x720at2400_h264.mp4/master.m3u8"&gt;
+	&lt;badge src="resource://button-play" class="whiteButton"&gt;
+		&lt;title&gt;Video&lt;/title&gt;
+	&lt;/badge&gt;
+&lt;/buttonlockup&gt;
+</code></pre>
+
+<h1 id="setup"><a name="setup" class="anchor">Setup</a></h1>
+
+<p>Currently adding video’s is only supported on the catalog pages. A video can be added by updating the catalog properties tab of the page properties. In the future we plan on adding a new Video Shelf component which will allow more options for embedding videos.</p>
+
+<p><img src="/pages/aaa/sensei-automated-workflow/images/primetimeConfiguration.png" alt="Primetime Configuration" /></p>
+
+<h1 id="how-it-works"><a name="how" class="anchor">How it works?</a></h1>
+
+<p>When the application launches the AppDelegate will register a method in TVJS that will facilitate playing a video using Primetime.</p>
+<pre><code>//this creates a function in the javascript context called "pushVideoView".
+//calling pushVideoView(url) in javascript will call the block we created above.
+evaluation.setObject(unsafeBitCast(pushPrimetimeVideoView, AnyObject.self), forKeyedSubscript: "pushPrimetimeVideoView")
+}, completion: {(Bool) -&gt; Void in
+</code></pre>
+
+<p>When the user clicks the lockup Presenter.js will look to see if the item selected contains the ptvideo tag.</p>
+
+<pre><code>if(ptVideoURL) {
+	pushPrimetimeVideoView(ptVideoURL);
+}
+</code></pre>
+
+<p>If if the ptvideo property is found we call the the native method which will handle pushing the Primetime Player ViewController on the stack.</p>
+
+<pre><code>//this is the block that will be called when javascript calls pushVideoView(url)
+let pushPrimetimeVideoView : @convention(block) (String) -&gt; Void = {
+	(url : String) -&gt; Void in
+                
+    let storyboard = UIStoryboard(name: "Storyboard", bundle: nil)
+    let vc = storyboard.instantiateViewControllerWithIdentifier("AAAPrimetimePlayerViewController") as? AAAPrimetimePlayerViewController
+    vc?.videoURL = url
+    self.appController?.navigationController.presentViewController(vc!, animated: true, completion: nil)
+    
+    //prints the string passed in from javascript
+    print(url)
+}
+</code></pre>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+
+    
+      <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'Your Google Analytics tracking ID', 'auto');
+        ga('send', 'pageview');
+      </script>
+    
+  </body>
+</html>

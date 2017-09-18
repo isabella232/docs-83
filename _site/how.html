@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>{} | A@A Template Documentation</title>
+<meta property="og:title" content="{}" />
+<meta name="author" content="Adobe@Adobe" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A demo of the template documents" />
+<meta property="og:description" content="A demo of the template documents" />
+<link rel="canonical" href="http://localhost:4000/pages/aaa/sensei-automated-workflow/how.html" />
+<meta property="og:url" content="http://localhost:4000/pages/aaa/sensei-automated-workflow/how.html" />
+<meta property="og:site_name" content="A@A Template Documentation" />
+<script type="application/ld+json">
+{"name":null,"description":"A demo of the template documents","url":"http://localhost:4000/pages/aaa/sensei-automated-workflow/how.html","headline":"{}","dateModified":null,"datePublished":null,"sameAs":null,"@type":"WebPage","author":{"@type":"Person","name":"Adobe@Adobe"},"image":null,"publisher":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="description" content="A demo of the template documents"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/pages/aaa/sensei-automated-workflow/assets/css/style.css?v=">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">A@A Template Documentation</h1>
+      <h2 class="project-tagline">A demo of the template documents</h2>
+      
+      
+        <a href="" class="btn">Download .zip</a>
+        <a href="" class="btn">Download .tar.gz</a>
+      
+    </section>
+
+    <section class="main-content">
+      <h1 id="how-does-the-pattern-work"><a name="how" class="anchor">How Does the Pattern Work?</a></h1>
+
+<p>In this section, we introduce the pattern we followed to allow viewing AEM content on the 4th-generation Apple TV platform. This pattern involves using an Xcode shell application to load a TVMLKit application from an AEM server instance.  After the application (Javascript) logic is loaded we pull in the views which are rendered by AEM.</p>
+
+<p>Here, you can see an overview of the system architecture of a TVMLKit client application and AEM server instance:</p>
+
+<p><img src="/pages/aaa/sensei-automated-workflow/images/AEM_flow_diagram_2x.png" alt="System Architecture" title="System Architecture" /></p>
+
+<h2 id="client-server-flow"><a name="client-server" class="anchor">Client-Server Flow</a></h2>
+<p>In a typical application, there is a native shell application holding icons and bootstrapping your TVMLKit application. The shell application will start a TVApplicationControllerContext which will point at the URL for your application.js. The application.js file contains your application logic. In our AEM use case we put application.js and other helper js files into an AEM Client-Side Library.</p>
+
+<p>Here, you can see the user-client-server flow for the application:</p>
+
+<p><img src="/pages/aaa/sensei-automated-workflow/images/flow_diagram2_2x.png" alt="Client-Server Flow" title="Client-Server Flow" /></p>
+
+<p>User browses installed applications -&gt;
+User runs our Shell application -&gt;
+Our Shell application loads TVMLKit -&gt;
+TVMLKit requests application.js file from AEM server -&gt;
+Application.js gets first view from AEM server -&gt;
+User views Apple TV TVML view loaded from AEM server -&gt;
+User launches a video from AEM application -&gt;
+If video is standard video we load a native player (if it’s a PrimeTime video we load the PrimeTime native video player view and play video) -&gt;
+User quits application -&gt;
+Application.js cleans up and stops</p>
+
+<h3 id="aem-server"><a name="aem_server" class="anchor">AEM Server</a></h3>
+<p>The AEM server contains the TVMLKit javascript core application logic.  The application logic is contained in a client-side library and pulled in on the startup of the Swift XCode application startup.</p>
+
+<h3 id="apple-tv--tvmlkit"><a name="apple_tv_client" class="anchor">Apple TV / TVMLKit</a></h3>
+<p>The core application logic controls which views are loaded and from where they are loaded. In our case the views are rendered with AEM and served remotely into the application navigation stack.
+We can invalidate the views after they have been loaded by the Apple Tv by either setting the HTTP cache settings to expire after a period or by including some business logic to invalidate the locally cached rendered view.</p>
+
+<h2 id="application-logic"><a name="app_logic" class="anchor">Application Logic</a></h2>
+<p>For the purposes of demonstration, the application logic resides in the designs directory in a client-side library.</p>
+
+<p><a href="https://git.corp.adobe.com/aaa/we-retail-atv/blob/master/aem/ui.apps/src/main/content/jcr_root/etc/designs/we-retail-atv/clientlib-atv/js/application.js">View the application.js code in the client-side library</a></p>
+
+<p>Here, you can see where the static application.js file is stored on our AEM server inside the ATV clientlib.  This client-side library also includes the helper utilities Presenter.js and ResourceLoader.js:</p>
+
+<figure class="highlight"><pre>.
+├── + apps
+├── + bin
+├── + conf
+├── + content
+├── etc
+|   ├──  + blueprints
+|   ├──  + clientcontext
+|   ├──  + clientlibs
+|   ├──  + cloudservices
+|   ├──  + cloudsettings
+|   ├──  + commerce
+|   ├──  + community
+|   ├──  + contentsync
+|   ├──  + dam
+|   ├──  + dashboards
+|   ├──  designs
+|   |   ├── we-retail-atv
+|   |   |   ├── clientlib-atv
+|   |   |   |   ├── js.txt
+|   |   |   |   ├── js
+<span class="open">|   |   |   |   |   ├── application.js</span>
+|   |   |   |   |   ├── Presenter.js
+|   |   |   |   |   ├── ResourceLoader.js
+</pre></figure>
+
+<p>As stated, the application.js file contains all application logic, this file calls out the first TVML view template to be loaded.</p>
+
+<h2 id="rendering-appletv-viewscomponents"><a name="views_comps" class="anchor">Rendering AppleTV Views/Components</a></h2>
+<p>AEM is generating the required view templates based on the <a href="https://developer.apple.com/tvos/human-interface-guidelines/">Apple TV Design Guidelines</a>.</p>
+
+<p>The following View Templates are being used in our pattern:</p>
+
+<ul>
+  <li><a href="https://developer.apple.com/library/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/StackTemplate.html#//apple_ref/doc/uid/TP40015064-CH21-SW4">stackTemplate</a> (Home Page)</li>
+  <li><a href="https://developer.apple.com/library/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/ShowcaseTemplate.html#//apple_ref/doc/uid/TP40015064-CH27-SW1">showcaseTemplate</a> (Catalog Page)</li>
+  <li><a href="https://developer.apple.com/library/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/ProductBundleTemplate.html#//apple_ref/doc/uid/TP40015064-CH38-SW1">productBundleTemplate</a> (Section Page)</li>
+  <li><a href="https://developer.apple.com/library/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/ProductTemplate.html#//apple_ref/doc/uid/TP40015064-CH8-SW4">productTemplate</a> (Product Page)</li>
+  <li><a href="https://developer.apple.com/library/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/CompilationTemplate.html#//apple_ref/doc/uid/TP40015064-CH36-SW2">productTemplate</a> (Cart Page)</li>
+</ul>
+
+<p>Below are the HTML/TVML compatible components that were created</p>
+
+<ul>
+  <li><a href="components.html#carousel">Carousel</a></li>
+  <li><a href="components.html#catalog">Catalog Shelf</a></li>
+  <li><a href="components.html#productShelf">Product Shelf</a></li>
+  <li><a href="components.html#productGrid">Product Grid</a></li>
+  <li><a href="components.html#target">mBox Shelf</a></li>
+</ul>
+
+<h2 id="rendering-tvml-viewscomponents"><a name="rendering_comps" class="anchor">Rendering TVML Views/Components</a></h2>
+<p>In this use case we need to provide an HTML-based preview of the user interface as well as the TVML rendering of the views while complying to Apple TV Design Guidelines. This means that each AEM component needs a separate TVML rendering as well. This is accomplished using <a href="https://sling.apache.org/documentation/the-sling-engine/url-decomposition.html">Sling selectors</a>, in this case we use .tvml as the selector.</p>
+
+<p>When we are done we have an HTML component mocking the appearance and style of the Apple TV view templates, allowing authors to see the content and structure of the application. Each component will support the .tvml selector giving us the Apple TV TVML compliant rendition of the same HTML component. The Apple TV application is only ever served the TVML content.</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+
+    
+      <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'Your Google Analytics tracking ID', 'auto');
+        ga('send', 'pageview');
+      </script>
+    
+  </body>
+</html>

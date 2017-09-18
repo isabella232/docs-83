@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>{} | A@A Template Documentation</title>
+<meta property="og:title" content="{}" />
+<meta name="author" content="Adobe@Adobe" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A demo of the template documents" />
+<meta property="og:description" content="A demo of the template documents" />
+<link rel="canonical" href="http://localhost:4000/pages/aaa/sensei-automated-workflow/templates.html" />
+<meta property="og:url" content="http://localhost:4000/pages/aaa/sensei-automated-workflow/templates.html" />
+<meta property="og:site_name" content="A@A Template Documentation" />
+<script type="application/ld+json">
+{"name":null,"description":"A demo of the template documents","url":"http://localhost:4000/pages/aaa/sensei-automated-workflow/templates.html","headline":"{}","dateModified":null,"datePublished":null,"sameAs":null,"@type":"WebPage","author":{"@type":"Person","name":"Adobe@Adobe"},"image":null,"publisher":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="description" content="A demo of the template documents"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/pages/aaa/sensei-automated-workflow/assets/css/style.css?v=">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">A@A Template Documentation</h1>
+      <h2 class="project-tagline">A demo of the template documents</h2>
+      
+      
+        <a href="" class="btn">Download .zip</a>
+        <a href="" class="btn">Download .tar.gz</a>
+      
+    </section>
+
+    <section class="main-content">
+      <h1 id="templates">Templates</h1>
+<p>Apple has created a set of TVML templates that can be used to create content pages. Each template produces a unique, full-screen display of information. You modify a page by adding or removing elements from a template. For a list of Apple-supplied TVML templates and elements, see <a href="https://developer.apple.com/library/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/TextboxTemplate.html#//apple_ref/doc/uid/TP40015064-CH2-SW8">Apple TV Markup Language Reference</a>.</p>
+
+<p>To create We.Retail ATV we require 5 templates. One template used as the home page, 3 templates for the e-commerce pages (Catalog, Section and Product) and one more template for the cart. We choose the Apple templates that we thought did the best job displaying the content required on each page.</p>
+
+<h2 id="home"><a name="home" class="anchor">Home</a></h2>
+<p>For the home page we choose the stack template. This template can be used to display groups of products such as displaying different categories of products. Each group of products is displayed directly underneath the previous group. Products can be displayed in different ways using carousel, grid, and shelf elements.</p>
+
+<p>TVML Template: <a href="https://developer.apple.com/library/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/StackTemplate.html#//apple_ref/doc/uid/TP40015064-CH21-SW4">Stack Template</a>
+<img src="images/ATV_stack_template.png" alt="Alt text" /></p>
+
+<h3 id="aem-features">AEM Features</h3>
+
+<p>Inside of AEM this template has one parsys which allows it to be fully customizable by the author. The author can drag on as many <a href="components.html#catalog">catalog</a>, <a href="components.html#productShelf">product</a>, <a href="components.html#target">mBox</a>, or <a href="components.html#carousel">carousel</a> shelf components as they wish.</p>
+
+<p><img src="images/home-template.png" alt="Alt text" /></p>
+
+<h2 id="catalog"><a name="catalog" class="anchor">Catalog</a></h2>
+<p>The catalog pages uses the showcase template. The showcase template can be used to display a row of images with descriptions associated with each image; for instance, for displaying a set of sections in the catalog. Users can scroll between images. When an image comes into focus, the size of the image is increased to be slightly larger than the other images.</p>
+
+<p>TVML Template: <a href="https://developer.apple.com/library/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/ShowcaseTemplate.html#//apple_ref/doc/uid/TP40015064-CH27-SW1">Showcase Template</a> (Catalog Page)
+<img src="images/ATV_showcase_template.png" alt="Alt text" /></p>
+
+<h3 id="aem-features-1">AEM Features</h3>
+<p>The primary content on these pages (the sections) are created automatically. This template will loop over the sections in the catalog and display each one on the shelf in the showcase template. Apple doesn’t allow much more customization than that. <span style="color:purple">By default the template will look for a banner node under a section node on catalog page for a background image to use</span>.</p>
+
+<p><span style="color:red">Authors can also customize the page further by changing the background image or adding music to be played when the page loads. This can be set up in the page properties under the catalog page tab.</span></p>
+
+<p><img src="images/catalog-template.png" alt="Alt text" /></p>
+
+<h2 id="section"><a name="section" class="anchor">Section</a></h2>
+<p>The section pages use the product bundle template. The product bundle template can be used to display detailed information about a product bundle; in our case, a catalog section. General information about the section is displayed in the top two-thirds of the screen with a row of related items, such as the products within the section, directly below.</p>
+
+<p>TVML Template: <a href="https://developer.apple.com/library/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/ProductBundleTemplate.html#//apple_ref/doc/uid/TP40015064-CH38-SW1">Product Bundle Template</a> (Section Page)
+<img src="images/ATV_productBundle_template.png" alt="Alt text" /></p>
+
+<h3 id="aem-features-2">AEM Features</h3>
+<p>Most of the content such as the section title and description is pulled from the section page node in the JCR. The template will loop over all child product pages in the section and display each one in the row of related items.</p>
+
+<p><span style="color:red">Authors can also customize the page by changing the background image from the default section image.</span> Section pages can also be configured to display and play videos using the Adobe PrimeTime Player. Both the background image and the video are configured in the page properties under the section tab.</p>
+
+<p><img src="images/section_page_properties.png" alt="Alt text" /></p>
+
+<p>At the bottom of the page is a parsys where authors can drag on as many <a href="components.html#catalog">catalog</a>, <a href="components.html#productShelf">product</a>, <a href="components.html#target">mBox</a>, or <a href="components.html#carousel">carousel</a> shelf components as they wish.</p>
+
+<p><img src="images/section-template.png" alt="Alt text" /></p>
+
+<h2 id="product"><a name="product" class="anchor">Product</a></h2>
+<p>The product pages uses the product template. The product template can be used to display detailed information about a product. The page displays general information about the product and is visible in the top two-thirds of the screen with a row of related products directly below. The user can scroll down and access detailed information about the product, including critical reviews.</p>
+
+<p>TVML Template: <a href="https://developer.apple.com/library/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/ProductTemplate.html#//apple_ref/doc/uid/TP40015064-CH8-SW4">Product Template</a> (Product Page)
+<img src="images/ATV_product_template.png" alt="Alt text" /></p>
+
+<h3 id="aem-features-3">AEM Features</h3>
+<p>Product information is pulled from the e-commerce system and rendered in the template automatically. The template is also setup to interface with the shopping cart and users can add the product to their shopping cart.</p>
+
+<p>By default the 1st shelf area below the product information is populated with the other products in the same section as the current product. For example, if you are looking at a product page for a bike, all the products in the parent section “Biking” are displayed below the product information.</p>
+
+<p><span style="color:red">The first shelf below the fold will render out any product reviews that exist for that product.</span></p>
+
+<p>At the bottom of the page is a parsys where authors can drag on as many <a href="components.html#catalog">catalog</a>, <a href="components.html#productShelf">product</a>, <a href="components.html#target">mBox</a>, or <a href="components.html#carousel">carousel</a> shelf components as they wish.</p>
+
+<p><img src="images/product-template.png" alt="Alt text" /></p>
+
+<h2 id="cart"><a name="cart" class="anchor">Cart</a></h2>
+<p>The cart page uses the compilation template. This template was created to display information about one product that is made up of several distinct pieces; for example, an album and all of the songs that it contains. In our case, the page represents a shopping cart that contains multiple products.</p>
+
+<p>TVML Template: <a href="https://developer.apple.com/library/tvos/documentation/LanguagesUtilities/Conceptual/ATV_Template_Guide/CompilationTemplate.html#//apple_ref/doc/uid/TP40015064-CH36-SW2">Compilation Template</a> (Cart Page)
+<img src="images/ATV_compilation_template.png" alt="Alt text" /></p>
+
+<h3 id="aem-features-4">AEM Features</h3>
+<p><span style="color:red">The contents of the page are automatically populated with the contents of the user’s shopping cart. The subtotal, total, and other shopping cart information is displayed in the header area. The user can also highlight each item in the cart and remove them.</span></p>
+
+<p><img src="images/cart-template.png" alt="Alt text" /></p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+
+    
+      <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'Your Google Analytics tracking ID', 'auto');
+        ga('send', 'pageview');
+      </script>
+    
+  </body>
+</html>
