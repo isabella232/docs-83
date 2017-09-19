@@ -9,6 +9,7 @@ $lt_navy: #2b4a78;
 $aqua : #49A5A1;
 $cyan: #3ed4ce;
 $fuschia: #fa00a9;
+$red: #ff3607;
 $bg_file : "../../images/gradient-bg.png";
 
 @mixin linearGradient($top-color, $mid-color, $bottom-color, $opacity, $image_bg) {
@@ -19,7 +20,24 @@ $bg_file : "../../images/gradient-bg.png";
     background-size: cover;
 }
 
+.social_icons {
+    ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+            li {
+                a{
+                    text-decoration: none;
+                    font-weight: normal;
+                }
+            
+        }
+    }
+}
+
 .page-header { 
+    display: flex;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,13 +55,30 @@ $bg_file : "../../images/gradient-bg.png";
     }
 }
 
-.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 { margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; color: #ff3607; font-family: 'Proxima Nova', 'sans serif'}
+.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 { margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; color: $red; font-family: 'Proxima Nova', 'sans serif'}
 
-.main-content h1 a, .main-content h2 a, .main-content h3 a, .main-content h4 a, .main-content h5 a, .main-content h6 a { color: #ff3607; font-family: 'Proxima Nova', 'sans serif'}
+.main-content h1 a, .main-content h2 a, .main-content h3 a, .main-content h4 a, .main-content h5 a, .main-content h6 a { color: $red; font-family: 'Proxima Nova', 'sans serif'}
 
 .site-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     background: $lt_navy;
+    .information {
+        padding: 25px;
+        color: $aqua;
+        a {
+            color: white;
+        }
+    }
+    .logo {
+        padding: 25px;
+        img {
+            padding: 0;
+            margin: 0;
+        }
+    }
 }
 
 ul {

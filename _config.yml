@@ -15,3 +15,10 @@ github:
     owner_name: Adobe@Adobe
 repository: aaa/gh-pages-boilerplate # location of your repository
 markdown: redcarpet # markdown engine
+
+#Social Media Accounts
+twitter_username: adobeatadobe
+github_username: aaa
+youtube_username: adobeatadobe
+behance_username: adobeatadobe
+wordpress_username: aaa
