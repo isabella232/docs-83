@@ -5,10 +5,13 @@ email: 			adobeatadobe@adobe.com
 baseurl: 	  "/pages/aaa/gh-pages-boilerplate" # the subpath of your site, e.g. /blog
 theme: jekyll-theme-cayman # theme from jekyll github account
 google_analytics: [Your Google Analytics tracking ID]
+show_downloads: false
+github: 
+    is_project_page: true
+    is_user_page: true
+    repository_url: https://git.corp.adobe.com/aaa/gh-pages-boilerplate
+    repository_name: 'GH Pages Boilerplate'
+    owner_url: http://www.adobeatadobe.com
+    owner_name: Adobe@Adobe
 repository: aaa/gh-pages-boilerplate # location of your repository
 markdown: redcarpet # markdown engine
-
-# About/contact
-author:
-  name:       Adobe@Adobe
-  url:        http://www.adobeatadobe.com

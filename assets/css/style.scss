@@ -1,0 +1,76 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+$purple : #6D3976;
+$navy : #23326B;
+$lt_navy: #2b4a78;
+$aqua : #49A5A1;
+$cyan: #3ed4ce;
+$fuschia: #fa00a9;
+$bg_file : "../../images/gradient-bg.png";
+
+@mixin linearGradient($top-color, $mid-color, $bottom-color, $opacity, $image_bg) {
+    background-image: -moz-linear-gradient(-45deg, rgba($top-color, $opacity) 5%, rgba($mid-color, $opacity - 0.15) 60%, rgba($bottom-color, $opacity) 100%), url($image_bg); /* FF3.6-15 */
+    background-image: -webkit-linear-gradient(-45deg, rgba($top-color, $opacity) 5%, rgba($mid-color, $opacity - 0.15) 60%, rgba($bottom-color, 1) 100%), url($image_bg); /* Chrome10-25,Safari5.1-6 */
+    background-image: linear-gradient(135deg, rgba($top-color, $opacity) 5%, rgba($mid-color, $opacity - 0.15) 60%, rgba($bottom-color, $opacity) 100%), url($image_bg); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{ie-hex-str(rgba($top-color, $opacity))}', endColorstr='#{ie-hex-str(rgba($bottom-color, $opacity))}',GradientType=1 ), url($image_bg); /* IE6-9 */
+    background-size: cover;
+}
+
+.page-header { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff; text-align: center; @include linearGradient($purple, $navy, $aqua, .95, $bg_file);
+    img {
+        width: 15%;
+        min-width: 250px;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+    }
+    .centered {
+        width: 60%;
+        margin-right: 20%;
+        margin-left: 0%;
+    }
+}
+
+.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 { margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; color: #ff3607; font-family: 'Proxima Nova', 'sans serif'}
+
+.main-content h1 a, .main-content h2 a, .main-content h3 a, .main-content h4 a, .main-content h5 a, .main-content h6 a { color: #ff3607; font-family: 'Proxima Nova', 'sans serif'}
+
+.site-footer {
+    width: 100%;
+    background: $lt_navy;
+}
+
+ul {
+    li {
+        a {
+           color: $lt_navy;
+            font-weight: bold;
+        }
+        ul {
+            li {
+                a {
+                    color: $aqua;
+                    font-weight: normal;
+                }
+                ul {
+                    li {
+                        a {
+                            color: #000;
+                            font-weight: 100;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.btn { width: 25%; min-width: 200px; margin-top: 1em; color: rgba(white, 1); font-weight: bold; background-color: rgba($cyan, 1); border-color: rgba($cyan, 1); border-style: solid; border-width: 1px; border-radius: 0.1rem; transition: color 0.2s, background-color 0.2s, border-color 0.2s; }
+
+.btn:hover { color: rgba($cyan, 1); text-decoration: none; background-color: rgba($aqua, 0); border-color: rgba(white, 1); font-weight: bold;}
