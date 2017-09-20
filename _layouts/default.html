@@ -29,91 +29,92 @@
     <section class="page-header">
         <img src="{{site.baseurl}}/images/aaa-logo.png"/>
         <div class="centered">
-            
-          <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
-          <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
-          {% if site.github.is_project_page %}
-            <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
-          {% endif %}
-          {% if site.show_downloads %}
-            <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
-            <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
-          {% endif %}
+            <img src="{{site.baseurl}}/images/aaa-long-logo.svg"/>
+            <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
+            <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
+            {% if site.github.is_project_page %}
+                <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
+            {% endif %}
+            {% if site.show_downloads %}
+                <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
+                <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
+            {% endif %}
         </div>
     </section>
 
 
     <section class="main-content">
-                                  <section class="social_icons">
-        <ul>
-            {% if site.github.owner_url %}
-                <li>
-                    <a class="icon-only" href="https://www.adobeatadobe.com/{{ site.github.owner_url }}">
-                      <i class="fa fa-rocket"></i>
+    
+        <section class="social_icons">
+            <ul>
+                {% if site.github.owner_url %}
+                    <li>
+                        <a class="icon-only" href="{{ site.github.owner_url }}">
+                          <i class="fa fa-rocket"></i>
+                        </a>
+                        <a class="with-text" href="{{ site.github.owner_url }}">
+                          <i class="fa fa-rocket"></i> Website
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if site.twitter_username %}
+                  <li>
+                    <a class="icon-only" href="https://twitter.com/{{ site.twitter_username }}">
+                      <i class="fa fa-twitter"></i>
+                    </a>                
+                      <a class="with-text" href="https://twitter.com/{{ site.twitter_username }}">
+                      <i class="fa fa-twitter"></i> Twitter
                     </a>
-                    <a class="with-text" href="{{ site.github.owner_url }}">
-                      <i class="fa fa-rocket"></i> Website
+                  </li>
+                {% endif %}
+
+                {% if site.github_username %}
+                  <li>
+                    <a class="icon-only" href="https://github.com/{{ site.github_username }}">
+                      <i class="fa fa-github"></i>
                     </a>
-                </li>
-            {% endif %}
+                    <a class="with-text" href="https://github.com/{{ site.github_username }}">
+                      <i class="fa fa-github"></i> GitHub
+                    </a>
+                  </li>
+                {% endif %}
 
-            {% if site.twitter_username %}
-              <li>
-                <a class="icon-only" href="https://twitter.com/{{ site.twitter_username }}">
-                  <i class="fa fa-twitter"></i>
-                </a>                
-                  <a class="with-text" href="https://twitter.com/{{ site.twitter_username }}">
-                  <i class="fa fa-twitter"></i> Twitter
-                </a>
-              </li>
-            {% endif %}
+                {% if site.behance_username %}
+                  <li>
+                    <a class="icon-only" href="https://behance.com/{{ site.behance_username }}">
+                      <i class="fa fa-behance"></i>
+                    </a>
+                      <a class="with-text" href="https://behance.com/{{ site.behance_username }}">
+                      <i class="fa fa-behance"></i> Behance
+                    </a>
+                  </li>
+                {% endif %}
 
-            {% if site.github_username %}
-              <li>
-                <a class="icon-only" href="https://github.com/{{ site.github_username }}">
-                  <i class="fa fa-github"></i>
-                </a>
-                <a class="with-text" href="https://github.com/{{ site.github_username }}">
-                  <i class="fa fa-github"></i> GitHub
-                </a>
-              </li>
-            {% endif %}
+                {% if site.wordpress_username %}
+                  <li>
+                    <a class="icon-only" href="https://blogs.adobe.com/{{ site.wordpress_username }}">
+                      <i class="fa fa-wordpress"></i>
+                    </a>
+                      <a class="with-text" href="https://blogs.adobe.com/{{ site.wordpress_username }}">
+                      <i class="fa fa-wordpress"></i> Adobe Blog
+                    </a>
+                  </li>
+                {% endif %}
 
-            {% if site.behance_username %}
-              <li>
-                <a class="icon-only" href="https://behance.com/{{ site.behance_username }}">
-                  <i class="fa fa-behance"></i>
-                </a>
-                  <a class="with-text" href="https://behance.com/{{ site.behance_username }}">
-                  <i class="fa fa-behance"></i> Behance
-                </a>
-              </li>
-            {% endif %}
-
-            {% if site.wordpress_username %}
-              <li>
-                <a class="icon-only" href="https://blogs.adobe.com/{{ site.wordpress_username }}">
-                  <i class="fa fa-wordpress"></i>
-                </a>
-                  <a class="with-text" href="https://blogs.adobe.com/{{ site.wordpress_username }}">
-                  <i class="fa fa-wordpress"></i> Adobe Blog
-                </a>
-              </li>
-            {% endif %}
-
-            {% if site.youtube_username %}
-              <li>
-                <a class="icon-only" href="https://www.youtube.com/{{ site.youtube_username }}">
-                  <i class="fa fa-youtube"></i>
-                </a>
-                  <a class="with-text" href="https://www.youtube.com/{{ site.youtube_username }}">
-                  <i class="fa fa-youtube"></i> YouTube
-                </a>
-              </li>
-            {% endif %}       
-        </ul>            
-      </section>
-      {{ content }}
+                {% if site.youtube_username %}
+                  <li>
+                    <a class="icon-only" href="https://www.youtube.com/{{ site.youtube_username }}">
+                      <i class="fa fa-youtube"></i>
+                    </a>
+                      <a class="with-text" href="https://www.youtube.com/{{ site.youtube_username }}">
+                      <i class="fa fa-youtube"></i> YouTube
+                    </a>
+                  </li>
+                {% endif %}       
+            </ul>            
+        </section>
+        {{ content }}
     </section>
       
     <footer class="site-footer">
@@ -124,7 +125,7 @@
             <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
         </div>
         <div class="logo">
-            <img src="{{site.baseurl}}/images/aaa-long-logo.png"/>
+            <img src="{{site.baseurl}}/images/aaa-long-logo.svg"/>
         </div>
     </footer>
 
