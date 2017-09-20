@@ -14,7 +14,7 @@ github:
     owner_url: http://www.adobeatadobe.com
     owner_name: Adobe@Adobe
 repository: aaa/gh-pages-boilerplate # location of your repository
-markdown: redcarpet # markdown engine
+markdown: kramdown # markdown engine
 
 #Social Media Accounts
 twitter_username: adobeatadobe
