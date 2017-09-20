@@ -3,6 +3,9 @@
 
 @import "{{ site.theme }}";
 
+//CUSTOMIZATION --- all mods go below here
+
+//Adobe@Adobe Colours
 $purple : #6D3976;
 $navy : #23326B;
 $lt_navy: #2b4a78;
@@ -12,6 +15,7 @@ $fuschia: #fa00a9;
 $red: #ff3607;
 $bg_file : "../../images/gradient-bg.png";
 
+//Create the gradient that goes behind the header
 @mixin linearGradient($top-color, $mid-color, $bottom-color, $opacity, $image_bg) {
     background-image: -moz-linear-gradient(-45deg, rgba($top-color, $opacity) 5%, rgba($mid-color, $opacity - 0.15) 60%, rgba($bottom-color, $opacity) 100%), url($image_bg); /* FF3.6-15 */
     background-image: -webkit-linear-gradient(-45deg, rgba($top-color, $opacity) 5%, rgba($mid-color, $opacity - 0.15) 60%, rgba($bottom-color, 1) 100%), url($image_bg); /* Chrome10-25,Safari5.1-6 */
@@ -20,6 +24,7 @@ $bg_file : "../../images/gradient-bg.png";
     background-size: cover;
 }
 
+//Used for the view on github button, changes the colour from default
 .btn { 
     min-width: 200px; 
     margin-top: 1em; 
@@ -32,6 +37,7 @@ $bg_file : "../../images/gradient-bg.png";
     transition: color 0.2s, background-color 0.2s, border-color 0.2s; 
 }
 
+//User for the view on github button, changes the hover colour from default
 .btn:hover { 
     color: rgba($cyan, 1); 
     text-decoration: none; 
@@ -40,10 +46,12 @@ $bg_file : "../../images/gradient-bg.png";
     font-weight: bold;
 }
 
+//Add the gradient to the header
 .page-header {  
     @include linearGradient($purple, $navy, $aqua, .95, $bg_file);
 }
 
+//Change the header font and spacing
 .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 { 
     margin-top: 2rem; 
     margin-bottom: 1rem; 
@@ -52,11 +60,13 @@ $bg_file : "../../images/gradient-bg.png";
     font-family: 'Proxima Nova', 'sans serif'
 }
 
+//Change the link font and spacing
 .main-content h1 a, .main-content h2 a, .main-content h3 a, .main-content h4 a, .main-content h5 a, .main-content h6 a { 
     color: $red; 
     font-family: 'Proxima Nova', 'sans serif';
 }
 
+//Change the sections bulleted links font
 ul {
     li {
         a {
@@ -81,6 +91,8 @@ ul {
         }
     }
 }
+
+//Add class for social icon list
 .social_icons {
     ul {
         list-style: none;
@@ -91,10 +103,10 @@ ul {
             li {
                 color: $navy;
                 .with-text {
-                    display: inline;
+                    display: inline; //display the text and icons
                 }
                 .icon-only {
-                    display: none;
+                    display: none; //don't display just the icons
                 }
                 a{
                     text-decoration: none;
@@ -105,12 +117,15 @@ ul {
     }
 }
 
+//Change the layout, footer size, font, and background
 .site-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    
     background: $lt_navy;
+    
     .information {
         max-width: 75%;
         padding: 10px;
@@ -119,6 +134,7 @@ ul {
             color: white;
         }
     }
+    
     .logo {
         max-width: 25%;
         padding: 10px;
@@ -131,6 +147,7 @@ ul {
     }
 }
 
+//Add padding under button in header
 .page-header { 
     .centered {
         img {
@@ -139,12 +156,14 @@ ul {
     }
 }
 
+//Desktop screen sizes
 @media screen and (min-width: 64em) { 
     
     .btn {
-        width: 25%; 
+        width: 25%; //Make button small when it gets wider
     }
 
+    //Change display to flex and add logo on the side
     .page-header { 
         display: flex;
         justify-content: center;
@@ -159,20 +178,23 @@ ul {
         }
         .centered {
             width: 70%;
-            margin-right: 10%;
+            margin-right: 15%;
             margin-left: 0%;
         }
     }
 }
 
+//Tablet screen size
 @media screen and (min-width: 42em) and (max-width: 64em) {
+    
+    
     .page-header { 
         img {
-            display: none;
+            display: none; //don't display large square logo
         }
         .centered {
             img {
-                display: inline;
+                display: inline; //display long line logo
                 max-width: 50%;
             }
             width: 100%;
@@ -185,10 +207,10 @@ ul {
         ul {
                 li {
                     .with-text {
-                        display: none;
+                        display: none; //don't display text and icons
                     }
                     .icon-only {
-                        display: inline;
+                        display: inline; //display just the icons
                     }
             }
         }
@@ -197,11 +219,11 @@ ul {
 @media screen and (max-width: 42em) {
     .page-header { 
         img {
-            display: none;
+            display: none; //don't display square logo
         }
         .centered {
             img {
-                display: inline;
+                display: inline; //display long line logo
                 max-width: 75%;
             }
             width: 100%;
@@ -214,10 +236,10 @@ ul {
         ul {
                 li {
                     .with-text {
-                        display: none;
+                        display: none; //don't display text and icons
                     }
                     .icon-only {
-                        display: inline;
+                        display: inline; //display just the icons
                     }
             }
         }
@@ -225,11 +247,11 @@ ul {
     
     .site-footer {
         .information {
-            display: none;
+            display: none; //don't display maintainance text
         }
         justify-content: center;
         .logo {
-            max-width: 100%;
+            max-width: 100%; //display long line logo full width
         }
     }
     
