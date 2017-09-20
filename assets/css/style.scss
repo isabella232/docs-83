@@ -20,65 +20,41 @@ $bg_file : "../../images/gradient-bg.png";
     background-size: cover;
 }
 
-.social_icons {
-    ul {
-        list-style: none;
-        display: flex;
-        justify-content: space-between;
-        padding: 0;
-            li {
-                a{
-                    text-decoration: none;
-                    font-weight: normal;
-                }
-            
-        }
-    }
+.btn { 
+    min-width: 200px; 
+    margin-top: 1em; 
+    color: rgba(white, 1); 
+    font-weight: bold; 
+    background-color: rgba($cyan, 1); 
+    border-color: rgba($cyan, 1); border-style: solid; 
+    border-width: 1px; 
+    border-radius: 0.1rem; 
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s; 
 }
 
-.page-header { 
-    display: flex;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff; text-align: center; @include linearGradient($purple, $navy, $aqua, .95, $bg_file);
-    img {
-        width: 15%;
-        min-width: 250px;
-        margin-left: 2.5%;
-        margin-right: 2.5%;
-    }
-    .centered {
-        width: 60%;
-        margin-right: 20%;
-        margin-left: 0%;
-    }
+.btn:hover { 
+    color: rgba($cyan, 1); 
+    text-decoration: none; 
+    background-color: rgba($aqua, 0); 
+    border-color: rgba(white, 1); 
+    font-weight: bold;
 }
 
-.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 { margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; color: $red; font-family: 'Proxima Nova', 'sans serif'}
+.page-header {  
+    @include linearGradient($purple, $navy, $aqua, .95, $bg_file);
+}
 
-.main-content h1 a, .main-content h2 a, .main-content h3 a, .main-content h4 a, .main-content h5 a, .main-content h6 a { color: $red; font-family: 'Proxima Nova', 'sans serif'}
+.main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 { 
+    margin-top: 2rem; 
+    margin-bottom: 1rem; 
+    font-weight: 700; 
+    color: $red; 
+    font-family: 'Proxima Nova', 'sans serif'
+}
 
-.site-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    background: $lt_navy;
-    .information {
-        padding: 25px;
-        color: $aqua;
-        a {
-            color: white;
-        }
-    }
-    .logo {
-        padding: 25px;
-        img {
-            padding: 0;
-            margin: 0;
-        }
-    }
+.main-content h1 a, .main-content h2 a, .main-content h3 a, .main-content h4 a, .main-content h5 a, .main-content h6 a { 
+    color: $red; 
+    font-family: 'Proxima Nova', 'sans serif';
 }
 
 ul {
@@ -105,7 +81,135 @@ ul {
         }
     }
 }
+.social_icons {
+    ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        color: $navy;
+            li {
+                color: $navy;
+                .with-text {
+                    display: inline;
+                }
+                .icon-only {
+                    display: none;
+                }
+                a{
+                    text-decoration: none;
+                    font-weight: normal;
+                }
 
-.btn { width: 25%; min-width: 200px; margin-top: 1em; color: rgba(white, 1); font-weight: bold; background-color: rgba($cyan, 1); border-color: rgba($cyan, 1); border-style: solid; border-width: 1px; border-radius: 0.1rem; transition: color 0.2s, background-color 0.2s, border-color 0.2s; }
+        }
+    }
+}
 
-.btn:hover { color: rgba($cyan, 1); text-decoration: none; background-color: rgba($aqua, 0); border-color: rgba(white, 1); font-weight: bold;}
+.site-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: $lt_navy;
+    .information {
+        padding: 10px;
+        color: $aqua;
+        a {
+            color: white;
+        }
+    }
+    .logo {
+        padding: 10px;
+        img {
+            padding: 0;
+            margin: 0;
+        }
+    }
+}
+
+
+
+@media screen and (min-width: 64em) { 
+    
+    .btn {
+        width: 25%; 
+    }
+
+    .page-header { 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff; 
+        text-align: center; 
+        img {
+            width: 15%;
+            min-width: 250px;
+            margin-left: 2.5%;
+            margin-right: 2.5%;
+        }
+        .centered {
+            width: 60%;
+            margin-right: 20%;
+            margin-left: 0%;
+        }
+    }   
+}
+
+@media screen and (min-width: 42em) and (max-width: 64em) {
+    .page-header { 
+        img {
+            display: none;
+        }
+        .centered {
+            width: 100%;
+            margin: 0;
+        }
+    }
+    
+    .social_icons {
+        font-size: 2rem;
+        ul {
+                li {
+                    .with-text {
+                        display: none;
+                    }
+                    .icon-only {
+                        display: inline;
+                    }
+            }
+        }
+    }    
+}
+@media screen and (max-width: 42em) {
+    .page-header { 
+        img {
+            display: none;
+        }
+        .centered {
+            width: 100%;
+            margin: 0;
+        }
+    }
+    
+    .social_icons {
+        font-size: 1.5rem;
+        ul {
+                li {
+                    .with-text {
+                        display: none;
+                    }
+                    .icon-only {
+                        display: inline;
+                    }
+            }
+        }
+    }
+    
+    .site-footer {
+        .information {
+            display: none;
+        }
+        justify-content: center;
+
+    }
+}
