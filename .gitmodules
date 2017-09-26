@@ -1,0 +1,3 @@
+[submodule "build"]
+	path = build
+	url = git@git.corp.adobe.com:aaa/gh-pages-boilerplate.git
