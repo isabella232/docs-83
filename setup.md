@@ -3,11 +3,26 @@ layout: default
 title: {{ site.name }}
 ---
 
-# <a name="auth" class="anchor">Authenticating and Device Provisioning</a>
+# <a name="setup" class="anchor">Setup</a>
  
-A common use case for some types of applications is to require the user to register their device before they can view the content in the app - think Netflix or HBO Go. Although this use case wouldn't necessarily apply to We.Retail we have included code in this sample to enable this feature. By default this is disabled but it can be turned on by setting deviceRegistrationRequired to true in /etc/designs/we-retail-atv/clientlib-atv.
+These instructions are intended for users of Mac OS X or other Linux/Unix systems. You will need to have commandline git and Ruby installed (which we will not cover here). Mac OS X comes with git and Ruby installed however you may need a newer version of Ruby (upgrading the system's default Ruby is not recommended). In this case, you can try using [RVM](https://rvm.io/rvm/install) or another Ruby version manager to install a different version of Ruby on your machine.
 
-![Auth flow]({{site.baseurl}}/images/registrationRequired.png)
+## <a name="" class="anchor">Cloning the Repository</a>
+In terminal, navigate to your code repository directory. In our case, let's call it codeProj. We are going to then clone our documentation template repository into a directory called gh-pages.
+
+```
+#Navigate to the directory
+cd ~/user/Development/codeProj/
+#Add the submodule in the gh-pages directory
+git submodule add git@git.corp.adobe.com/pages/aaa/gh-pages-boilerplate.git gh-pages/
+```
+
+Next, we initialize the submodule:
+
+```
+cd /gh-pages
+git init
+```
 
 ## <a name="bootstrapping" class="anchor">Bootstrapping Process</a>
 Below is a diagram of the bootrapping process in We.Retail. 

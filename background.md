@@ -3,13 +3,18 @@ layout: default
 title: {{ site.name }}
 ---
 
-![Alt text](images/atv.png)
-
 # Overview
-In late 2015, Apple released the 4th version of the Apple TV. One of the most exciting things about this new device is that Apple has opened up the platform for developers to create apps and distribute them on a new App Store built just for TV experiences. These applications can either be written in native languages such as Objective-C or Swift, or they can be written in a new language called TVML. TVML is similar to HTML in that it is a markup language that can be used in conjunction with JavaScript to build applications.
+[Adobe@Adobe](http://www.adobeatadobe.com) decided to make our code open source. This means we need to create consistent and readable documentation between our repositories. Our ultimate goal being to encourage people to use and contribute to our code repositories by making it easy.
 
-TVML applications work in a client-server model. The main application is responsible only for loading the application.js file and then hands off most of the presentation and application logic to TVMLKit. The UI &amp; application logic for these client-server applications can live on a server and are not required to be packaged with the application. Apple has created a collection of TVML templates that are used to create applications. TVML templates define what elements can be used and in what order. Each template is designed to display information in a specific way. For example, the loadingTemplate shows a spinner and a quick description of what is happening, while the ratingTemplate shows the rating for a product. While these templates can be very rigid in their ability to be customized there are a few areas where template authoring works and makes sense.
+## Setup
+This documentation goes over how to clone and setup the documentation template repository into a new or existing code repository. You will need git, Ruby, Jekyll, sass, and a markdown engine. We will go over this in detail in the [setup](setup.html) section.
 
-## TVML &amp; AEM
+## Style
+Customization of the template involves modifying sass and html files in the repository. We can also make use of the markdown language features as we write content. The changes can then be pushed to the code repository and any original template changes can be pulled in when needed. We will go over this in detail in the [style](customize.html) section.
 
-AEM is a world-class platform for creating authorable HTML experiences. Since TVML is similar to HTML, this project demonstrates that the features of AEM translates into the TVML world as well.
+## Content 
+This documentation is only a template and guideline, therefore the content should be changed to describe how to use the code in the respository in which it resides. For instance, we will change the title from "A@A Documentation" to "Awesome JS Code Project". 
+
+We want the code to be readable and user friendly so we follow a simple style guide to achieve this. We will go over how to change the content and write new content in detail in the [content](content.html) section.
+
+
