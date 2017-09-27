@@ -15,6 +15,16 @@ In terminal, navigate to your code repository directory. In our case, let's call
 cd ~/user/Development/codeProj/
 #Add the submodule in the gh-pages directory
 git submodule add git@git.corp.adobe.com/pages/aaa/gh-pages-boilerplate.git gh-pages/
+
+git checkout --orphan gh-pages
+git commit -m "Initial gh-pages commit"
+git push origin gh-pages
+git checkout master
+git submodule add <the clone url for your repo> build
+cd build
+git checkout gh-pages
+cd ../
+git commit -am "Set up gh-pages as a submodule"
 ```
 
 Next, we initialize the submodule:
