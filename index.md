@@ -27,6 +27,4 @@ It allows us to provide consistently branded and user friendly documentation to 
 
 ## <a name="future_improvements" class="anchor">Future Improvements</a>
 
-* Add in shopping cart support
-* Add shoppable video support
-* Better support for video (Video Shelf)
+* Versioning

@@ -7,75 +7,87 @@ title: {{ site.name }}
  
 These instructions are intended for users of Mac OS X or other Linux/Unix systems. You will need to have commandline git and Ruby installed (which we will not cover here). Mac OS X comes with git and Ruby installed however you may need a newer version of Ruby (upgrading the system's default Ruby is not recommended). In this case, you can try using [RVM](https://rvm.io/rvm/install) or another Ruby version manager to install a different version of Ruby on your machine.
 
-## <a name="" class="anchor">Cloning the Repository</a>
-In terminal, navigate to your code repository directory. In our case, let's call it codeProj. We are going to then clone our documentation template repository into a directory called gh-pages.
+## <a name="" class="anchor">Creating New Orphan Branches</a>
+In terminal, navigate to your code repository directory. In our case, let's call it codeProj. We are going to create 2 orphan branches for our documentation. One is for staging the documentation (this will be pushed from the base documentation repository). The other, gh-pages, will be for production documentation that pulls in staging when there are updates (this avoids overwriting any customizations made).
 
 ```
 #Navigate to the directory
 cd ~/user/Development/codeProj/
-#Add the submodule in the gh-pages directory
-git submodule add git@git.corp.adobe.com/pages/aaa/gh-pages-boilerplate.git gh-pages/
 
+#Create the first orphan branch (staging-gh-pages)
+git checkout --orphan staging-gh-pages
+#Remove all of the files from master in the branch
+git rm --cached -r .
+#Create a readme to commit
+touch README.md (you can add content to this)
+#Add and commit the branch
+git add .
+git commit -m 'Initial Commit'
+#Push the branch
+git push origin staging-gh-pages
+
+#Create the second orphan branch (gh-pages)
 git checkout --orphan gh-pages
-git commit -m "Initial gh-pages commit"
+#Remove all of the files from master in the branch
+git rm --cached -r .
+#Create a readme to commit
+touch README.md (you can add content to this)
+#Add and commit the branch
+git add .
+git commit -m 'Initial Commit'
+#Push the branch
 git push origin gh-pages
-git checkout master
-git submodule add <the clone url for your repo> build
-cd build
+```
+
+Next, contact the documentation administrator to push the documentation to your staging-gh-pages branch. You must provide your SSH repository url and your branch must be named staging-gh-pages. Once this is done, you can merge the staging-gh-pages branch into the gh-pages branch. The gh-pages branch is where you make your customizations and staging is just used for receiving base documentation updates.
+
+```
+#Get the base documentation from remote
+git checkout staging-gh-pages
+git pull origin staging-gh-pages --allow-unrelated-histories
+#Checkout gh-pages branch
 git checkout gh-pages
-cd ../
-git commit -am "Set up gh-pages as a submodule"
+#Merge the branches
+git pull origin staging-gh-pages --allow-unrelated-histories
+#Finish the merge
+You will need to use console to write and quit the merge docs (press esc and then 'wq!' generally)
 ```
 
-Next, we initialize the submodule:
+Next, we customize _config.yml file in the gh-pages branch to make it all work. Use your preferred editor to make modifications. Change all references to "gh-pages-boilerplate" to your project and repository names where needed in the file.
 
 ```
-cd /gh-pages
-git init
+#Checkout the gh-pages branch
+git checkout gh-pages
+vi _config.yml (or use your preferred editor)
+#Modify the file
+title:  A@A Template Documentation
+description: A demo of the template documents
+email: 			adobeatadobe@adobe.com
+baseurl: 	  "/pages/aaa/gh-pages-boilerplate" # the subpath of your site, e.g. /blog
+theme: jekyll-theme-cayman # theme from jekyll github account
+google_analytics: [Your Google Analytics tracking ID]
+show_downloads: false
+github: 
+    is_project_page: true
+    is_user_page: true
+    repository_url: https://git.corp.adobe.com/aaa/**gh-pages-boilerplate**
+    repository_name: 'GH Pages Boilerplate'
+    owner_url: http://www.adobeatadobe.com
+    owner_name: Adobe@Adobe
+repository: aaa/gh-pages-boilerplate # location of your repository
+markdown: kramdown # markdown engine
+
+#Social Media Accounts
+twitter_username: adobeatadobe
+github_username: aaa
+youtube_username: adobeatadobe
+behance_username: adobeatadobe
+wordpress_username: aaa
+#Add and commit the changes
+git add .
+git commit -m 'Setting up the config file'
+#Push the docs
+git push origin gh-pages
 ```
 
-## <a name="bootstrapping" class="anchor">Bootstrapping Process</a>
-Below is a diagram of the bootrapping process in We.Retail. 
-
-![Auth flow]({{site.baseurl}}/images/AuthFlow.png)
-
-* A request is made for the application configuration using the AtvAppConfigurationServlet. This configuration notifies the application if device registration is required and the default view location.
-
-* If registration is required the application checks to see if the device has been authorized with the server by calling CheckDeviceRegistrationServlet. If it has not been authorized, the CheckDeviceRegistrationServlet will track the device under /var/atv-devices. 
-
-![Device Registration]({{site.baseurl}}/images/atv-devices.png)
-
-* The user will then be shown a screen with a registration code they will need to enter on the website.
-
-![Device Registration]({{site.baseurl}}/images/registrationScreen.png)
-
-* The user will navigate to http://{domain}/registration in a browser, login to their account, and enter the registration code that is displayed on the Apple TV.
-
-![Device Registration]({{site.baseurl}}/images/registrationCodeEntry.png)
-
-* Once the device has been authorized, the entry is moved from /var/atv-device and put under the user's account in /home/users by the RegisterDeviceServlet.
-
-![Device Registration]({{site.baseurl}}/images/authorizedDevice.png)
-
-* The application checks every 5 seconds to see if the device has been authorized, once the CheckDeviceRegistrationServlet returns true the servlet will return the deviceId and devicePasscode. These two values will be used to call the AtvAuthHandler and set the shared session for all future calls.
-
-* The registration code screen will then disappear and the application will request the default view specified by the AtvAppConfigurationServlet at launch.
-
-This diagram shows the communication flow from the Swift shell.  As you can see, all network communications are flowing through our AemJsUtils.  This allows us to setup a session and share that session with all calls made.
-
-![Bootstrap overview]({{site.baseurl}}/images/bootstrapOverview.png)
-
-# <a name="servlets" class="anchor">Provided Servlets</a>
-
-### AtvAppConfigurationServlet
-Servlet that loads the configurable properties on an Apple TV JS application and sends those properties back to the shell application to allow it to bootstrap itself.
-
-###RegisterDeviceServlet
-Servlet that registers a device based on the passed in registrationCode. When the users visit the registration page and enters their registration token this servlet will find the device associated to the token and move it under the user's profile in /home directory.
-
-###CheckDeviceRegistrationServlet
-Servlet that checks if a device has been registered based on the applicationId and deviceId. If the passed in deviceId passed is unknown it will add the device to /var/atv-devices and set its registration status to unregistered.
-
-If the device is found and has been registered the servlet will return the devicePasscode that can be used to authenticate future calls to AEM.
-
-## <a name="registrationPage" class="anchor">Registration Page</a>
+Finally, we go into Github and the code repository settings. In there, you will find an option for Github Pages Source. Set this to the 'gh-pages branch' option in the dropdown menu. If it's working correctly there will be a green bar in the top of this section providing a url to your new documentation. If the css looks off this mean you probably missed something in the _config.yml file.
