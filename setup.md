@@ -5,15 +5,15 @@ title: {{ site.name }}
 
 # <a name="setup" class="anchor">Setup</a>
 
-## <a name="" class="anchor">System Requirements</a>
+## <a name="requirements" class="anchor">System Requirements</a>
 
 These instructions are intended for users of Mac OS X. Other systems are not supported.
 
-### <a name="" class="anchor">XCode</a>
+### <a name="xcode" class="anchor">XCode</a>
  
 You will need to have XCode commandline tools installed. For more details, visit [Apple Developer XCode](https://developer.apple.com/xcode/features/).
 
-### <a name="" class="anchor">Ruby</a>
+### <a name="ruby" class="anchor">Ruby</a>
 
 Mac OS X comes with Ruby installed however you may need a newer version of Ruby and upgrading the system's default Ruby is not recommended. First, make sure you have the latest version of XCode [Apple Developer XCode](https://developer.apple.com/xcode/features/). Then, you can try using [RVM](https://rvm.io/rvm/install) or another Ruby version manager to install a different version of Ruby on your machine while keeping the system version in place. 
 
@@ -38,7 +38,7 @@ $ which ruby
 If terminal can't find Ruby, make sure your XCode installation is up-to-date.
 Make sure that it's also pointing to the correct Ruby location and that your bash_profile/profile docs don't have old references.
 
-### <a name="" class="anchor">git</a>
+### <a name="git" class="anchor">git</a>
 
 In terminal:
 ```
@@ -60,7 +60,7 @@ If terminal can't find git, make sure your XCode installation is up-to-date.
 Make sure that it's also pointing to the correct git location and that your bash_profile/profile docs don't have old references.
 
 
-## <a name="" class="anchor">Adding Docs Remote to Existing Repository</a>
+## <a name="adding_docs_remote" class="anchor">Adding Docs Remote to Existing Repository</a>
 
 We are going to add a remote to our project. 
 
@@ -90,7 +90,7 @@ $ git remote show docs
     master pushes to master (local out of date)
 ```
 
-## <a name="" class="anchor">Creating Docs Subtree + Directory</a>
+## <a name="adding_docs_subtree" class="anchor">Adding Docs Subtree</a>
 
 Next, We are going to add the subtree to our project in a directory called docs.
 This should pull in all the content on the first pass.
@@ -115,7 +115,7 @@ $ git push origin master
 
 ```
 
-## <a name="" class="anchor">Jekyll Configuration</a>
+## <a name="jekyll_config" class="anchor">Jekyll Configuration</a>
 
 Next, we customize _config.yml file in the docs directory to make it all work. Use your preferred editor to make modifications. Change all references to "gh-pages-boilerplate" to your project and repository names where needed in the file.
 
@@ -124,7 +124,8 @@ Next, we customize _config.yml file in the docs directory to make it all work. U
 $ git checkout master
 
 #User your favourite text editor here
-$ vi _config.yml (or use your preferred editor)
+cd <project directory>/docs/
+$ vi ./docs/_config.yml (or use your preferred editor)
 
 #Modify the file
 title:  A@A Template Documentation
@@ -159,7 +160,7 @@ $ git commit -m 'Setting up the config file'
 $ git push origin master
 ```
 
-## <a name="" class="anchor">Installing Documentation (the Ruby Gems)</a>
+## <a name="install_docs" class="anchor">Installing Documentation (the Ruby Gems)</a>
 
 At this point, you should be able to install successfully from the project directory and have the correct Ruby gems be installed.
 These include github-pages (with Jekyll and SASS) and Kramdown gems (Markdown Engine). If there are errors, you will need to go back and check that you have Ruby installed correctly (check the version). Also, check that your Gemfile looks something like this:
@@ -193,13 +194,13 @@ Configuration file: <project directory>/_config.yml
   Server running... press ctrl-c to stop.
 ```
 
-## <a name="" class="anchor">GitHub Configuration</a>
+## <a name="github_config" class="anchor">GitHub Configuration</a>
 
 Finally, we go to 'git.corp.adobe.com/aaa/respository_name' and then the 'Settings' tab. In there, you will find a section called 'Github Pages' which has a 'Source' field. Select 'master branch /docs folder' from the dropdown menu. If it's working correctly there will be a green bar in the top of this section that says "Your site is published at" with a url to your new documentation. Else, it will give you an error here. If the css looks broken this means you probably missed replacing something in the _config.yml file.
 
 ![GitHub Settings Image](images/setup/githubsettings.png)
 
-## <a name="" class="anchor">Pulling Changes</a>
+## <a name="pulling_docs_changes" class="anchor">Pulling Changes</a>
 
 When there are changes to the original docs repository '/aaa/docs', you will need to pull these into your own repo and merge the changes accordingly. The docs repository will attempt to override the changes to your configuration file. Currently, we are exploring solutions to make this more efficient (potential adds to .gitignore).
 
