@@ -4,61 +4,128 @@ title: {{ site.name }}
 ---
 
 # <a name="setup" class="anchor">Setup</a>
- 
-These instructions are intended for users of Mac OS X or other Linux/Unix systems. You will need to have commandline git and Ruby installed (which we will not cover here). Mac OS X comes with git and Ruby installed however you may need a newer version of Ruby (upgrading the system's default Ruby is not recommended). In this case, you can try using [RVM](https://rvm.io/rvm/install) or another Ruby version manager to install a different version of Ruby on your machine.
 
-## <a name="" class="anchor">Creating New Orphan Branches</a>
-In terminal, navigate to your code repository directory. In our case, let's call it codeProj. We are going to create 2 orphan branches for our documentation. One is for staging the documentation (this will be pushed from the base documentation repository). The other, gh-pages, will be for production documentation that pulls in staging when there are updates (this avoids overwriting any customizations made).
+## <a name="" class="anchor">System Requirements</a>
+
+These instructions are intended for users of Mac OS X. Other systems are not supported.
+
+### <a name="" class="anchor">XCode</a>
+ 
+You will need to have XCode commandline tools installed. For more details, visit [Apple Developer XCode](https://developer.apple.com/xcode/features/).
+
+### <a name="" class="anchor">Ruby</a>
+
+Mac OS X comes with Ruby installed however you may need a newer version of Ruby and upgrading the system's default Ruby is not recommended. First, make sure you have the latest version of XCode [Apple Developer XCode](https://developer.apple.com/xcode/features/). Then, you can try using [RVM](https://rvm.io/rvm/install) or another Ruby version manager to install a different version of Ruby on your machine while keeping the system version in place. 
+
+To test your Ruby and git installations...
+
+In terminal:
+```
+#Navigate to the directory
+$ cd <project directory>
+
+#Get the Ruby version
+$ ruby -v
+
+#Returns something like this
+ruby 2.1.10p492 (2016-04-01 revision 54464) [x86_64-darwin16.0]
+
+#Get the Ruby location (using RVM)
+$ which ruby
+/Users/walpole/.rvm/rubies/ruby-2.1.10/bin/ruby
+```
+
+If terminal can't find Ruby, make sure your XCode installation is up-to-date.
+Make sure that it's also pointing to the correct Ruby location and that your bash_profile/profile docs don't have old references.
+
+### <a name="" class="anchor">git</a>
+
+In terminal:
+```
+#Navigate to the directory
+$ cd <project directory>
+
+#Get the Git version
+$ git --version
+
+#Returns something like this
+git version 2.13.5 (Apple Git-94)
+
+#Get the Git location
+$ which git
+/usr/bin/git
+```
+
+If terminal can't find git, make sure your XCode installation is up-to-date.
+Make sure that it's also pointing to the correct git location and that your bash_profile/profile docs don't have old references.
+
+
+## <a name="" class="anchor">Adding Docs Remote to Existing Repository</a>
+
+We are going to add a remote to our project. 
+
+In terminal:
 
 ```
 #Navigate to the directory
-cd ~/user/Development/codeProj/
+$ cd <project directory>
 
-#Create the first orphan branch (staging-gh-pages)
-git checkout --orphan staging-gh-pages
-#Remove all of the files from master in the branch
-git rm --cached -r .
-#Create a readme to commit
-touch README.md (you can add content to this)
-#Add and commit the branch
-git add .
-git commit -m 'Initial Commit'
-#Push the branch
-git push origin staging-gh-pages
+#Show our remotes
+$ git remote show
+origin
+<other remotes if you have them>....
 
-#Create the second orphan branch (gh-pages)
-git checkout --orphan gh-pages
-#Remove all of the files from master in the branch
-git rm --cached -r .
-#Create a readme to commit
-touch README.md (you can add content to this)
-#Add and commit the branch
-git add .
-git commit -m 'Initial Commit'
-#Push the branch
-git push origin gh-pages
+#Add a new remote
+$ git remote add docs git@git.corp.adobe.com:aaa/docs.git
+
+#Show the changes
+$ git remote show docs
+* remote docs
+  Fetch URL: git@git.corp.adobe.com:aaa/docs.git
+  Push  URL: git@git.corp.adobe.com:aaa/docs.git
+  HEAD branch: master
+  Remote branches:
+    master        tracked
+  Local ref configured for 'git push':
+    master pushes to master (local out of date)
 ```
 
-Next, contact the documentation administrator to push the documentation to your staging-gh-pages branch. You must provide your SSH repository url and your branch must be named staging-gh-pages. Once this is done, you can merge the staging-gh-pages branch into the gh-pages branch. The gh-pages branch is where you make your customizations and staging is just used for receiving base documentation updates.
+## <a name="" class="anchor">Creating Docs Subtree + Directory</a>
+
+Next, We are going to add the subtree to our project in a directory called docs.
+This should pull in all the content on the first pass.
+
+In terminal:
 
 ```
-#Get the base documentation from remote
-git checkout staging-gh-pages
-git pull origin staging-gh-pages --allow-unrelated-histories
-#Checkout gh-pages branch
-git checkout gh-pages
-#Merge the branches
-git pull origin staging-gh-pages --allow-unrelated-histories
-#Finish the merge
-You will need to use console to write and quit the merge docs (press esc and then 'wq!' generally)
+#Add the subtree (squash the history)
+$ git subtree add --prefix=docs/ docs master --squash
+
+#Checkout master branch(or another branch if you are going to do a pull request or merge it in)
+$ git checkout master
+
+#Add all of the new content in tracking
+$ git add . 
+
+#Commit the new content with message
+$ git commit -m 'Adding the docs directory'
+
+#Push to master branch (or the other branch if using another method)
+$ git push origin master
+
 ```
 
-Next, we customize _config.yml file in the gh-pages branch to make it all work. Use your preferred editor to make modifications. Change all references to "gh-pages-boilerplate" to your project and repository names where needed in the file.
+## <a name="" class="anchor">Jekyll Configuration</a>
+
+Next, we customize _config.yml file in the docs directory to make it all work. Use your preferred editor to make modifications. Change all references to "gh-pages-boilerplate" to your project and repository names where needed in the file.
 
 ```
-#Checkout the gh-pages branch
-git checkout gh-pages
-vi _config.yml (or use your preferred editor)
+#Checkout master branch
+$ git checkout master
+
+#User your favourite text editor here
+$ vi _config.yml (or use your preferred editor)
+
 #Modify the file
 title:  A@A Template Documentation
 description: A demo of the template documents
@@ -83,11 +150,60 @@ github_username: aaa
 youtube_username: adobeatadobe
 behance_username: adobeatadobe
 wordpress_username: aaa
+
 #Add and commit the changes
-git add .
-git commit -m 'Setting up the config file'
-#Push the docs
-git push origin gh-pages
+$ git add .
+$ git commit -m 'Setting up the config file'
+
+#Push the master branch
+$ git push origin master
 ```
 
-Finally, we go into Github and the code repository settings. In there, you will find an option for Github Pages Source. Set this to the 'gh-pages branch' option in the dropdown menu. If it's working correctly there will be a green bar in the top of this section providing a url to your new documentation. If the css looks off this mean you probably missed something in the _config.yml file.
+## <a name="" class="anchor">Installing Documentation (the Ruby Gems)</a>
+
+At this point, you should be able to install successfully from the '<project directory>' and have the correct Ruby gems be installed.
+These include github-pages (with Jekyll and SASS) and Kramdown (Markdown Engine). If there are errors, you will need to go back and check that you have Ruby installed correctly (check the version). Also, check that your Gemfile looks something like this:
+
+```
+source 'https://rubygems.org'
+gem 'github-pages', group: :jekyll_plugins
+gem 'kramdown'
+```
+
+In terminal:
+
+```$ bundle install```
+
+Upon success, try:
+
+```$ bundle exec jekyll serve```
+
+You will be given a url to visit showing you what your documentation will look like:
+
+```
+Configuration file: <project directory>/_config.yml
+   GitHub Metadata: No GitHub API authentication could be found. Some fields may be missing or have incorrect data.
+            Source: <source>
+       Destination: <destination>
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+                    done in 0.791 seconds.
+ Auto-regeneration: enabled for '<project directory>'
+    Server address: http://127.0.0.1:4000/<url>
+  Server running... press ctrl-c to stop.
+```
+
+## <a name="" class="anchor">GitHub Configuration</a>
+
+Finally, we go into Github and the code repository settings. In there, you will find an option for Github Pages Source. Set this to the 'master branch /docs folder' option in the dropdown menu. If it's working correctly there will be a green bar in the top of this section providing a url to your new documentation. When visited, if the css looks broken this means you probably missed replacing something in the _config.yml file.
+
+![GitHub Settings Image](images/setup/githubsettings.png)
+
+## <a name="" class="anchor">Pulling Changes</a>
+
+When there are changes to the original docs repository, you will need to pull these into your own repo and merge the changes accordingly. The docs repository will attempt to override the changes to your configuration file. Currently, we are exploring solutions to make this more efficient (potential adds to .gitignore).
+
+```
+#Pull content from the subtree (squash the history)
+$ git subtree pull --prefix=docs/ docs master --squash
+```
