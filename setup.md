@@ -161,8 +161,8 @@ $ git push origin master
 
 ## <a name="" class="anchor">Installing Documentation (the Ruby Gems)</a>
 
-At this point, you should be able to install successfully from the '<project directory>' and have the correct Ruby gems be installed.
-These include github-pages (with Jekyll and SASS) and Kramdown (Markdown Engine). If there are errors, you will need to go back and check that you have Ruby installed correctly (check the version). Also, check that your Gemfile looks something like this:
+At this point, you should be able to install successfully from the project directory and have the correct Ruby gems be installed.
+These include github-pages (with Jekyll and SASS) and Kramdown gems (Markdown Engine). If there are errors, you will need to go back and check that you have Ruby installed correctly (check the version). Also, check that your Gemfile looks something like this:
 
 ```
 source 'https://rubygems.org'
@@ -195,15 +195,17 @@ Configuration file: <project directory>/_config.yml
 
 ## <a name="" class="anchor">GitHub Configuration</a>
 
-Finally, we go into Github and the code repository settings. In there, you will find an option for Github Pages Source. Set this to the 'master branch /docs folder' option in the dropdown menu. If it's working correctly there will be a green bar in the top of this section providing a url to your new documentation. When visited, if the css looks broken this means you probably missed replacing something in the _config.yml file.
+Finally, we go to 'git.corp.adobe.com/aaa/respository_name' and the our code repository 'Settings'. In there, you will find a section called 'Github Pages' and a 'Source' option. Select 'master branch /docs folder' from the dropdown menu. If it's working correctly there will be a green bar in the top of this section that says "Your site is published at" with a url to your new documentation. Else, it will give you an error here. If the css looks broken this means you probably missed replacing something in the _config.yml file.
 
 ![GitHub Settings Image](images/setup/githubsettings.png)
 
 ## <a name="" class="anchor">Pulling Changes</a>
 
-When there are changes to the original docs repository, you will need to pull these into your own repo and merge the changes accordingly. The docs repository will attempt to override the changes to your configuration file. Currently, we are exploring solutions to make this more efficient (potential adds to .gitignore).
+When there are changes to the original docs repository '/aaa/docs', you will need to pull these into your own repo and merge the changes accordingly. The docs repository will attempt to override the changes to your configuration file. Currently, we are exploring solutions to make this more efficient (potential adds to .gitignore).
 
 ```
 #Pull content from the subtree (squash the history)
 $ git subtree pull --prefix=docs/ docs master --squash
 ```
+
+That is all!
