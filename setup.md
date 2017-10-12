@@ -195,7 +195,7 @@ Configuration file: <project directory>/_config.yml
 
 ## <a name="" class="anchor">GitHub Configuration</a>
 
-Finally, we go to 'git.corp.adobe.com/aaa/respository_name' and the our code repository 'Settings'. In there, you will find a section called 'Github Pages' and a 'Source' option. Select 'master branch /docs folder' from the dropdown menu. If it's working correctly there will be a green bar in the top of this section that says "Your site is published at" with a url to your new documentation. Else, it will give you an error here. If the css looks broken this means you probably missed replacing something in the _config.yml file.
+Finally, we go to 'git.corp.adobe.com/aaa/respository_name' and then the 'Settings' tab. In there, you will find a section called 'Github Pages' which has a 'Source' field. Select 'master branch /docs folder' from the dropdown menu. If it's working correctly there will be a green bar in the top of this section that says "Your site is published at" with a url to your new documentation. Else, it will give you an error here. If the css looks broken this means you probably missed replacing something in the _config.yml file.
 
 ![GitHub Settings Image](images/setup/githubsettings.png)
 
