@@ -194,6 +194,8 @@ Configuration file: <project directory>/_config.yml
   Server running... press ctrl-c to stop.
 ```
 
+At this point, Jekyll will be generating a file called _site and storing your website assets in there, this is just for the purpose of previewing. This _site directory is added to the .gitignore file as we do not want to commit any of these files. GitHub automatically generates the _site directory when we upload new content.
+
 ## <a name="github_config" class="anchor">GitHub Configuration</a>
 
 Finally, we go to 'git.corp.adobe.com/aaa/respository_name' and then the 'Settings' tab. In there, you will find a section called 'Github Pages' which has a 'Source' field. Select 'master branch /docs folder' from the dropdown menu. If it's working correctly there will be a green bar in the top of this section that says "Your site is published at" with a url to your new documentation. Else, it will give you an error here. If the css looks broken this means you probably missed replacing something in the _config.yml file.

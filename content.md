@@ -3,68 +3,24 @@ layout: default
 title: {{ site.name }}
 ---
 
-# Components
+# <a name="content" class="anchor">Content</a>
+ 
+Jekyll transforms plain text into static websites and blogs. Here, we will briefly cover how to override Jekyll's layout and write content.
 
-## <a name="carousel" class="anchor">Carousel</a>
-The carousel element displays images in a row that the user can navigate by swiping left and right on the remote.
+### <a name="sass" class="anchor">Liquid</a>
 
-![Alt text](images/carousel.png)
+Our Jekyll installation uses Liquid for template processing. You can learn more about overriding default You can also add any of your modifications there.
 
-### Configuration
+### <a name="images" class="anchor">Images and Other Assets</a>
 
-Images can be added by opening the configuration dialog and clicking the add field button.
+All images can be placed in the images directory under a logical organizational structure, as needed. If you have videos, you can create a videos directory and it should be likewise detected and added to the generated web content. You can learn how to reference images in the [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
-* <b>Image Path:</b> Path to image in DAM.
-* <b>Link To:</b> Path selecting the image to be linked.
-* <b>Banner Title:</b> Heading overlaid at the bottom of the banner (optional).
+### <a name="jekyll" class="anchor">Jekyll</a>
 
-![Alt text](images/carousel_settings.png)
+You can learn more about how to customize Jekyll [here](https://jekyllrb.com/).
 
-## <a name="catalogShelf" class="anchor">Catalog Shelf</a>
-The catalog shelf component displays catalog or section elements horizontally. If the contained elements cannot fit on the screen, users can navigate left and right to show more elements.
+## <a name="markdown" class="anchor">Markdown</a>
 
-![Alt text](images/catalogShelf.png)
+Our [Jekyll configuration](setup.html#jekyll_config) uses the Kramdown engine for Markdown processing. You can find many references online to help you get started like the [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet). Markdown allows you to apply structure to your text documents. The Kramdown engine will process all *.md files into html and place them in the _site directory to be served as web content. You can place all of your Markdown files in the root of the project directory.
 
-### Configuration
-
-The catalog shelf can display any set of catalog or section pages. To configure the shelf, open up the components configuration dialog and under "Parent Page" select a parent with either catalogs or sections as its children. The component will loop over all children of the parent. 
-
-By default, this component will look for a node at the path "section/banner" under each child page. This banner node should have a property called fileReference that contains the path to the image used for this child catalog or section.
-
-![Alt text](images/catalog_shelf_settings.png)
-
-
-## <a name="productShelf" class="anchor">Product Shelf</a>
-The product shelf component displays product elements horizontally. If the contained products cannot fit on the screen, users can navigate left and right to show more elements.
-
-![Alt text](images/productShelf.png)
-
-### Configuration
-
-Products can be added to the product shelf by simply dragging them onto the component from the asset finder.
-
-
-## <a name="productGrid" class="anchor">Product Grid</a>
-The product grid will layout elements in a grid pattern. Products inside of the grid are displayed in a row bound by the size of the screen. Items are automatically moved to another row once a row is filled.
-
-![Alt text](images/productGrid.png)
-
-### Configuration
-
-Products can be added to the product grid by simply dragging them onto the component from the asset finder.
-
-
-## <a name="target" class="anchor">mBox Shelf</a>
-The mBox shelf is used to display A/B tests from Adobe Target. More information on this component can be found on the [Adobe Target Integration](target.html) page.
-
-![Alt text](images/target.png)
-
-### Configuration
-
-A/B tests can be set up by opening the configuration dialog and entering the following fields.
-
-* <b>mBox Id:</b> Id of mBox
-* <b>Target Page:</b> Target page to be presented if the user selects the A/B test (Optional)
-
-![Alt text](images/target_settings.png)
-
+You will see that this template structure contains index.md, background.md, setup.md, etc. These can be used as examples.
